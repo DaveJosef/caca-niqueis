@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    align-items: center;
+    height: 97vh;
+}
+
+.cells-container {
+    width: 100%;
+    height: 200px;
+    display: flex;
+}
+
+.cells-container > * {
+    display: flex;
+}
+
+.cell {
+    flex: 1;
+}
+
+.trigger {
+    flex: .8;
+    background-image: url('./trigger_up.png');
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.trigger:active {
+    animation: trigger 1s;
+}
+
+@keyframes trigger {
+    0% {
+        background-image: url('./trigger_up.png');
+    }
+    20% {
+        background-image: url('./2.png');
+    }
+    50% {
+        background-image: url('./3.png');
+    }
+    100% {
+        background-image: url('./trigger_down.png');
+    }
+}
