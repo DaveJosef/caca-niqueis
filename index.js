@@ -1,8 +1,11 @@
 
 const cells = document.querySelectorAll('.cell');
 const trigger = document.querySelector('.trigger');
-const possibleResults = ['url(./blue.png)', 'url(./red.png)', 'url(./brown.png)'];
+const possibleResults = ['url(./slot_1.png)', 'url(./slot_2.png)', 'url(./slot_3.png)', 'url(./slot_4.png)', 'url(./slot_5.png)'];
 let playing = false;
+const cheersAudio = new Audio('./cheers.wav');
+const rollingAudio = new Audio('./rolling.wav');
+const scoreAudio = new Audio('./score.wav');
 
 function randomNumber(max) {
     return Math.floor(Math.random() * max) + 1;
@@ -10,7 +13,7 @@ function randomNumber(max) {
 
 function applyRandomImage(cell) {
     let backgroundImage;
-    const random = randomNumber(3);
+    const random = randomNumber(5);
     possibleResults.forEach((result, index) => {
         if ((index + 1) === random) {
             backgroundImage = result;
@@ -33,20 +36,26 @@ cells.forEach(cell => {
 });
 
 function spin() {
+    rollingAudio.play();
     playing = true;
     let results = [];
     cells.forEach((cell, index) => {
         setTimeout(() => {
-            cell.style.backgroundImage = 'url(./gif.gif)';
+            //cell.style.backgroundImage = 'url(./gif.gif)';
+            cell.classList.add('spinning');
         }, 510 * (index + 1))
         setTimeout(() => {
+            scoreAudio.play();
+            cell.classList.remove('spinning');
             results.push(applyRandomImage(cell));
 
-            if (index === possibleResults.length - 1) {
+            if (index === cells.length - 1) {
                 if (checkResults(results)) {
                     alert("Parabéns! Vc Ganhou!");
+                    cheersAudio.play();
                 }
                 playing = false;
+                rollingAudio.pause();
             }
         }, 5000 + 300 * (index + 1))
     })

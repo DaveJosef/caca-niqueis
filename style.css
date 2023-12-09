@@ -1,11 +1,13 @@
 body {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 97vh;
 }
 
 .cells-container {
     width: 100%;
+    max-width: 800px;
     height: 200px;
     display: flex;
 }
@@ -16,13 +18,20 @@ body {
 
 .cell {
     flex: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.cell.spinning {
+    animation: spin infinite 2s;
 }
 
 .trigger {
-    flex: .8;
+    flex: .5;
     background-image: url('./trigger_up.png');
-    background-position: center;
-    background-size: contain;
+    background-position: left;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -42,5 +51,23 @@ body {
     }
     100% {
         background-image: url('./trigger_down.png');
+    }
+}
+
+@keyframes spin {
+    0% {
+        background-image: url('./slot_1.png');
+    }
+    20% {
+        background-image: url('./slot_2.png');
+    }
+    40% {
+        background-image: url('./slot_3.png');
+    }
+    60% {
+        background-image: url('./slot_4.png');
+    }
+    80% {
+        background-image: url('./slot_5.png');
     }
 }
