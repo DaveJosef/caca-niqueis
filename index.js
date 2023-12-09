@@ -6,6 +6,7 @@ let playing = false;
 const cheersAudio = new Audio('./cheers.wav');
 const rollingAudio = new Audio('./rolling.wav');
 const scoreAudio = new Audio('./score.wav');
+rollingAudio.loop = true;
 
 function randomNumber(max) {
     return Math.floor(Math.random() * max) + 1;
